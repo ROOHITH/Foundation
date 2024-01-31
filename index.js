@@ -25,4 +25,18 @@ $(document).ready(function () {
       isStudent: $("#varibaleIsStudent").text(),
     })
   );
+
+  function fetchData(callback) {
+    setTimeout(() => {
+      let data = "Async data";
+      callback(data);
+    }, 2000);
+  }
+
+  $("#fetchDataBtn").on("click", () => {
+    fetchData((result) => {
+      console.log(result);
+      $("#fetchData").text(result);
+    });
+  });
 });

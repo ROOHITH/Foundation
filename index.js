@@ -39,4 +39,43 @@ $(document).ready(function () {
       $("#fetchData").text(result);
     });
   });
+
+  function fetchData2() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let data = "Async data 2";
+        resolve(data);
+      }, 2000);
+    });
+  }
+
+  $("#fetchDataBtn2").on("click", () => {
+    fetchData2()
+      .then((result) => {
+        console.log(result);
+        $("#fetchData2").text(result);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        $("#fetchData2").text("Error:", error);
+      });
+  });
+
+  async function fetchDataAsync() {
+    try {
+      let result = await fetchData();
+      console.log(result);
+      $("#fetchData3").text(result);
+    } catch (error) {
+      console.error("Error:", error);
+      $("#fetchData3").text("Error:", error);
+    }
+  }
+  
+  $("#fetchDataBtn3").on("click",()=>{
+    fetchDataAsync();
+  })
+  
+
+  
 });
